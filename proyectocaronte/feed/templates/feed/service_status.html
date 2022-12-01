@@ -1,0 +1,34 @@
+{% extends 'feed/index.html' %}
+{% block content %}
+{% if user.is_authenticated %}
+<div class="container">
+    <div class="service_status-title">   
+        <h1>Estatus de servicio</h1>
+        <a class="btn btn-primary service_status-boton" href="new_service_status" role="button">Nuevo estado de servicio</a>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Id de permisos de servicio</th>
+                <th scope="col">Nombre</th>
+                </tr>
+        </thead>
+        <tbody>
+            {% for stat in all_status  %}
+            <tr>
+                <th scope="row">{{ forloop.counter }} </th>
+                <td>{{ stat.name }} </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        <tr>
+
+        </tr>
+    </table>
+
+</div>
+{% else %}
+    <h1>necesitas iniciar sesion para ver esto chato</h1>
+{% endif %}
+{% endblock %}
+    

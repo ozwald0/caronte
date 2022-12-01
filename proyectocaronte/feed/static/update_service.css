@@ -1,0 +1,61 @@
+.update_service-title {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+
+.update_service-form-title {
+    display: flex;
+    justify-content: start;
+    align-items: baseline;
+    flex-wrap: wrap;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.update_service-form-title-key {
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 10px;
+    margin-bottom: 0px;
+}
+
+.update_service-form-title-value {
+    font-size: 24x;
+    margin-top: 0px;
+}
+
+.update_service-form-fields-to-update {
+    padding-top: 10px;
+    margin-top: 2px;
+    padding-bottom: 10px;
+    background-color: #F8F8F8;
+    border-radius: 20px;
+    border: solid 1px #F0F0F0;
+}
+
+.update_service-form-title-key-select-field {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.update_service-form-add-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.update_service-title2 {
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 20px;
+
+}
+
+.update_service-total {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.update_service-items-boton {
+    margin-top: 5px;
+}

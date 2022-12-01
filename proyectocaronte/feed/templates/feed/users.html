@@ -1,0 +1,40 @@
+{% extends 'feed/index.html' %}
+
+
+{% block content %}
+{% if user.is_authenticated %}
+<div class="container">
+    <h1>Usuarios</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Avatar</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Id</th>
+                <th scope="col">Correo</th>
+                
+                </tr>
+        </thead>
+        <tbody>
+            {% for user in allusers  %}
+            <tr>
+                <th scope="row">{{ user.username }} </th>
+                <td>{{ user.first_name }} </td>
+                <td>{{ user.last_name }} </td>
+                <td>{{ user.id }} </td>
+                <td>{{ user.email }} </td>
+
+            </tr>
+            {% endfor %}
+            </tbody>
+        <tr>
+
+        </tr>
+    </table>
+
+</div>
+{% else %}
+    <h1>necesitas iniciar sesion para ver esto chato</h1>
+{% endif %}
+{% endblock %}

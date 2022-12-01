@@ -1,0 +1,31 @@
+{% extends 'feed/index.html' %}
+
+
+{% block content %}
+<div class="container">
+    <h1>Niveles de permisos</h1> <a href="new_level">Nuevo nivel</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Nivel Id</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Descripcion </th>
+                </tr>
+        </thead>
+        <tbody>
+            {% for level in all_levels  %}
+            <tr>
+                <th scope="row">{{ level.id }} </th>
+                <td>{{ level.level_name }} </td>
+                <td>{{ level.description }} </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        <tr>
+
+        </tr>
+    </table>
+
+</div>
+{% endblock %}
+    

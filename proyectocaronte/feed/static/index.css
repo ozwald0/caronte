@@ -1,0 +1,15 @@
+body {
+    position: relative;
+    padding-bottom: 250px;
+    min-height: 100vh;
+}
+
+.div-menu {
+    display: flex;
+    justify-content: space-between;
+}
+
+.div-menu-each {
+    display: flex;
+    justify-content: space-between;
+}

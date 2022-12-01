@@ -1,0 +1,208 @@
+{% extends 'feed/index.html' %}
+{% block content %}
+{% if user.is_authenticated %}
+<div class="container">
+    <div class="reports-title"><h1>Reportes</h1></div>
+    <div class="reports-forms">
+        <form method="POST" action="{% url 'reports' %}">
+            <div class="reports-forms-filter-name"><h6 class="reports-forms-filter-name-title">Filtro por mes</h6></div>
+        {% csrf_token %}
+            <input type="hidden" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="form_type" value="form_month">
+            <div class="reports-forms-general-items">
+                <select class="form-select" aria-label="Default select example" name ="month">
+                    <option selected value="{{ 0 }}">Selecciona el mes</option>
+                    <option value="{{ 1 }}">Enero</option>
+                    <option value="2">Febrero</option>
+                    <option value="3">Marzo</option>
+                    <option value="4">Abril</option>
+                    <option value="5">Mayo</option>
+                    <option value="6">Junio</option>
+                    <option value="7">Julio</option>
+                    <option value="8">Agosto</option>
+                    <option value="9">Septiembre</option>
+                    <option value="{{ 10 }}">Octubre</option>
+                    <option value="11">Noviembre</option>
+                    <option value="12">Diciembre</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </form>
+        <form method="POST" action="{% url 'reports' %}">
+            <div class="reports-forms-filter-name"><h6 class="reports-forms-filter-name-title">Filtro por usuario y mes</h6></div>
+        {% csrf_token %}
+            <input type="hidden" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="form_type" value="form_user_month">
+            <div class="reports-forms-general-items">
+                <select class="form-select" aria-label="Default select example" name ="month">
+                    <option value="{{ 0 }}" selected >Selecciona el mes</option>
+                    <option value="{{ 1 }}">Enero</option>
+                    <option value="2">Febrero</option>
+                    <option value="3">Marzo</option>
+                    <option value="4">Abril</option>
+                    <option value="5">Mayo</option>
+                    <option value="6">Junio</option>
+                    <option value="7">Julio</option>
+                    <option value="8">Agosto</option>
+                    <option value="9">Septiembre</option>
+                    <option value="{{ 10 }}">Octubre</option>
+                    <option value="11">Noviembre</option>
+                    <option value="12">Diciembre</option>
+                </select>
+            </div>
+            <div class="reports-forms-general-items">
+                <select class="form-select" aria-label="Default select example" name ="selected_user">
+                    <option selected value="{{ 0 }}">Selecciona el usuario</option>
+                    {% for all in all_users %}
+                        <option value="{{ all.id }}">{{ all.username }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </form>
+        <form method="POST" action="{% url 'reports' %}">
+            <div class="reports-forms-filter-name"><h6 class="reports-forms-filter-name-title">Filtro por usuario</h6></div>
+        {% csrf_token %}
+            <input type="hidden" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="form_type" value="form_user">
+            <div class="reports-forms-general-items">
+                <select class="form-select" aria-label="Default select example" name ="selected_user">
+                    <option selected value="{{ 0 }}">Selecciona el usuario</option>
+                    {% for all in all_users %}
+                        <option value="{{ all.id }}">{{ all.username }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </form>
+        <form method="POST" action="{% url 'reports' %}">
+            <div class="reports-forms-filter-name"><h6 class="reports-forms-filter-name-title">Filtro por status</h6></div>
+        {% csrf_token %}
+            <input type="hidden" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="form_type" value="form_status">
+            <div class="reports-forms-general-items">
+                <select class="form-select" aria-label="Default select example" name ="selected_status">
+                    <option selected value="{{ 0 }}">Selecciona el status</option>
+                    {% for all in all_status %}
+                        <option value="{{ all.id }}">{{ all.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </form>
+    </div>
+    <details>
+        <summary>Filtros por fecha</summary>
+        <div class="reports-forms">
+            <form method="POST" action="{% url 'reports' %}">
+                <div class="reports-forms-filter-name"><h6 class="reports-forms-filter-name-title">Filtro fecha, usuario y status</h6></div>
+            {% csrf_token %}
+                <input type="hidden" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="form_type" value="form_date">
+                <div class="reports-forms-general-items">
+                    <input type="date" name="specific_date">
+                </div>
+                <div class="reports-forms-general-items">
+                    <select class="form-select" aria-label="Default select example" name ="selected_user">
+                        <option selected value="{{ "no selection" }}">Selecciona el usuario</option>
+                        {% for all in all_users %}
+                            <option value="{{ all.id }}">{{ all.username }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="reports-forms-general-items">
+                    <select class="form-select" aria-label="Default select example" name ="selected_status">
+                        <option selected value="{{ "no selection" }}">Selecciona el usuario</option>
+                        {% for all in all_status %}
+                            <option value="{{ all.id }}">{{ all.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Buscar</button>
+            </form>
+            <form method="POST" action="{% url 'reports' %}">
+                <div class="reports-forms-filter-name"><h6 class="reports-forms-filter-name-title">Filtro rengo de fechas, usuario y status</h6></div>
+            {% csrf_token %}
+                <input type="hidden" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="form_type" value="form_date_range">
+                <div class="reports-forms-general-items">
+                    <input type="date" name="initial_date">
+                    <input type="date" name="final_date">
+                </div>
+                <div class="reports-forms-general-items">
+                    <select class="form-select" aria-label="Default select example" name ="selected_user">
+                        <option selected value="{{ "no selection" }}">Selecciona el usuario</option>
+                        {% for all in all_users %}
+                            <option value="{{ all.id }}">{{ all.username }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="reports-forms-general-items">
+                    <select class="form-select" aria-label="Default select example" name ="selected_status">
+                        <option selected value="{{ "no selection" }}">Selecciona el status</option>
+                        {% for all in all_status %}
+                            <option value="{{ all.id }}">{{ all.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Buscar</button>
+            </form>
+        </div>
+    </details>
+    <br><br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">No de servicio</th>
+                {% if user.is_superuser %}
+                <th scope="col">Usuario</th>
+                {% endif %}
+                <th scope="col">Status de servicio</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Cliente</th>
+                <th scope="col">Precio neto</th>
+                <th scope="col">Fecha de entrada</th>
+                <th scope="col"></th>
+                </tr>
+        </thead>
+        <tbody>
+            {% for service in all  %}
+            {% with index=forloop.counter0 %}
+            
+            
+            <tr>
+                <th scope="row">{{ forloop.counter }} </th>
+                {% if user.is_superuser %}
+                <td>{{ service.user }} </td>
+                {% endif %}
+                <td>{{ service.status }} </td>
+                <td>{{ service.failure|truncatechars:20 }} </td>
+                <td>{{ service.client }} </td>
+                {% for full in full_prices %}
+                {% if index == forloop.counter0 %}
+                <td>${{ full }} </td>
+                {% endif %}
+                {% endfor %}
+                <td>{{ service.created|date }} </td>
+                <td><a href="service_detail/{{service.id}}">Detalles</a></td>
+            </tr>
+            
+            {% endwith %}
+            {% endfor %}
+            </tbody>
+        <tr>
+
+        </tr>
+    </table>
+    <div class="reports-totals">
+        <div class="reports-totals-each"><p><strong>Total de servicios:</strong></p>&nbsp;&nbsp;<p class="reports-totals-each-result-number">{{ number_of_services }}<p></div>
+        <div class="reports-totals-each"><p><strong>Total neto:</strong></p>&nbsp;&nbsp;<p class="reports-totals-each-result-number">${{ total_price }}</p></div>
+        <div class="reports-totals-each"><p><strong>Subtotal:</strong></p>&nbsp;&nbsp;<p class="reports-totals-each-result-number">${{ total_price_iva }}</p></div>
+        <div class="reports-totals-each"><p><strong>Total de items:</strong></p>&nbsp;&nbsp;<p class="reports-totals-each-result-number">${{ service_item_price }}</p></div>
+        <div class="reports-totals-each"><p><strong>Subtotal de items:</strong></p>&nbsp;&nbsp;<p class="reports-totals-each-result-number">${{ service_item_price_iva }}</p></div>
+    </div>
+    <div class="reports-totals">
+        <div class="reports-totals-each"><p><strong>Total de servicios:</strong></p>&nbsp;&nbsp;<p class="reports-totals-each-result-number">${{ just_service_price }}</p></div>
+        <div class="reports-totals-each"><p><strong>Subtotal de servicios:</strong></p>&nbsp;&nbsp;<p class="reports-totals-each-result-number">${{ just_service_price_iva }}</p></div>
+        <div class="reports-totals-each"><p><strong>Comisiones del Usuario:</strong></p>&nbsp;&nbsp;<p class="reports-totals-each-result-number">${{ comisions }}</p></div>
+    </div>
+</div>
+{% else %}
+    <h1>Inicia sesion</h1>
+{% endif %}
+{% endblock %}
+    

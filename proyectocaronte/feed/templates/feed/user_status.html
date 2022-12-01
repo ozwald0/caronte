@@ -1,0 +1,29 @@
+{% extends 'feed/index.html' %}
+
+
+{% block content %}
+<div class="container">
+    <h1>Niveles de Estado de Usuario</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id de permisos de usuarios</th>
+                <th scope="col">Nombre</th>
+                </tr>
+        </thead>
+        <tbody>
+            {% for stat in all_status  %}
+            <tr>
+                <th scope="row">{{ stat.id }} </th>
+                <td>{{ stat.status_of_users_name }} </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        <tr>
+
+        </tr>
+    </table>
+
+</div>
+{% endblock %}
+    

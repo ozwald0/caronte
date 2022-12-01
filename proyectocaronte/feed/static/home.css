@@ -1,0 +1,34 @@
+.homeHero {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.homeHero-services {  
+    text-align: center;
+}
+.home-services {
+    margin: 0px;
+    border-style: none;
+}
+.titulo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 25px;
+    color: black;
+
+}
+.enlace {
+    text-decoration: none;
+}
+
+.titulo-servicios {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.boton-servicio {
+    height: 40px;
+    font-size: 18px;
+}

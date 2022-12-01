@@ -1,0 +1,90 @@
+{% extends 'feed/index.html' %}
+{% block content %}
+{% if user.is_authenticated %}
+<div class="container">
+    <h1>Nuevo servicio</h1>
+    <br><br>
+    <form method="POST" action="{% url 'new_service' %}">
+    {% csrf_token %}
+        <div class="new_service-main-pack">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label new_service-label-text">Usuario</label>
+                    <select class="form-select new_service-label-choice" aria-label="Default select example" value="{{ user.id }}" name="user" id="user">
+                        {% for user in users %}
+                            <option name="option1" value="{{ user.id }}">{{ user.username }}</option>  
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label new_service-label-text">Tipo de servicio</label>
+                    <select class="form-select new_service-label-choice" aria-label="Default select example" value="{{ service.id }}" name="service" id="service">
+                        {% for service in services %}
+                            <option name="option2" value="{{ service.id }}">{{ service.name }}</option>    
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label new_service-label-text">Tipo de equipo</label>
+                    <select class="form-select new_service-label-choice" aria-label="Default select example" value="{{ product.id }}" name="product" id="product">
+                        {% for product in products %}
+                            <option name="option3" value="{{ product.id }}">{{ product.description }}</option> 
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label new_service-label-text">Cliente</label>
+                    <select class="form-select new_service-label-choice" aria-label="Default select example" value="{{ client.id }}" name="client" id="client">
+                        {% for client in clients %}
+                            <option name="option4" value="{{ client.id }}">{{ client.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+           
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label new_service-label-text">Modelo</label>
+                    <input type="text" class="form-control new_service-label-choice" id="exampleInputEmail1" aria-describedby="emailHelp" name="model">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label new_service-label-text">Numero de Serie</label>
+                    <input type="text" class="form-control new_service-label-choice" id="exampleInputEmail1" aria-describedby="emailHelp" name="serial">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label new_service-label-text">Accesorios</label>
+                    <input type="text" class="form-control new_service-label-choice" id="exampleInputEmail1" aria-describedby="emailHelp" name="acce">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label new_service-label-text">Falla</label>
+                    <input type="text" class="form-control new_service-label-choice" id="exampleInputEmail1" aria-describedby="emailHelp" name="failure">
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input new_service-label-choice" type="checkbox" value="working" name="working" id="flexCheckDefault" default="False">
+                    <label class="form-check-label new_service-label-text" for="flexCheckDefault">
+                        El equipo enciende
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input new_service-label-choice" type="checkbox" value="damaged" name="damaged" id="flexCheckDefault1" default="False">
+                    <label class="form-check-label new_service-label-text" for="flexCheckDefault">
+                        El equipo esta dañado
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input new_service-label-choice" type="checkbox" value="complete" name="complete" id="flexCheckDefault" default="False">
+                    <label class="form-check-label new_service-label-text" for="flexCheckDefault">
+                        El equipo esta completo
+                    </label>
+                </div>
+                <div class="mb-3 mt-3">
+                    <label for="exampleInputEmail1" class="form-label new_service-label-text">Precio</label>
+                    <input type="number" class="form-control new_service-label-choice" id="exampleInputEmail1" aria-describedby="emailHelp" name="price" min="1">
+                </div>
+            
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Crear</button>
+      </form>
+</div>
+{% else %}
+    <h1>Inicia Sesion</h1>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'feed/index.html' %}
+
+
+{% block content %}
+<div class="container">
+    <h1>nuevo usuario</h1>
+    <br><br>
+    <form action="{% url 'status_of_user' %}" method="POST">
+    {% csrf_token %}
+        <div class = "form-group">    
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="name", placeholder = "Nombre">
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Crear</button>
+    </form>
+</div>
+{% endblock %}

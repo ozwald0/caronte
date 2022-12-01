@@ -1,0 +1,76 @@
+{% extends 'feed/index.html' %}
+{% block content %}
+{% if user.is_authenticated %}
+<div class="container">
+    <h1>Cliente {{ client.id }}</h1>
+    <br>
+    <form class="row g-3" method="POST" action="{% url 'update_client' client.id  %}">
+    {% csrf_token %}
+        <div class="col-md-6">
+            <div>
+                <label for="inputEmail4" class="form-label">Empresa</label>
+                <input type="text" class="form-control" id="inputEmail4" placeholder="{{client.company_name}}" name="company_name" >
+            </div>
+            <div>
+                <label for="inputEmail4" class="form-label">Correo</label>
+                <input type="email" class="form-control" id="inputEmail4" placeholder="{{client.email}}" name="email">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div>
+                <label for="inputEmail4" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="inputEmail4" placeholder="{{client.name}}" name="name">
+            </div>
+            <div>
+                <label for="inputEmail4" class="form-label">Telefono</label>
+                <input type="text" class="form-control" id="inputEmail4" placeholder="{{client.phonenumber}}" name="phonenumber">
+            </div>
+            <div>
+                <label for="inputEmail4" class="form-label">Direccion</label>
+                <input type="text" class="form-control" id="inputEmail4" placeholder="{{client.adress}}" name="adress">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">actualizar cliente</button>
+    </form>
+<br><br><br>
+{% if all_client_services %}
+    <div class="container-fluid">
+        <h1>Servicios</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">No de servicio</th>
+                    <th scope="col">Tecnico</th>
+                    <th scope="col">Status de servicio</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Cliente</th>
+                    <th scope="col"></th>
+                    </tr>
+            </thead>
+            <tbody>
+                {% for service in all_client_services  %}
+                <tr>
+                    <th scope="row">{{ service.id }} </th>
+                    <td>{{ service.user }} </td>
+                    <td>{{ service.status }} </td>
+                    <td>{{ service.failure }} </td>
+                    <td>{{ service.client }} </td>
+                    <td><a href=""><a href="service_detail/{{service.id}}/">Detalles</a></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            <tr>
+
+            </tr>
+        </table>
+
+    </div>
+{% else %}
+    <h1>El cliente no tiene servicios (que codo)</h1>
+{% endif %}
+
+</div>
+{% else %}
+    <h1>Inicia Sesion</h1>
+{% endif %}
+{% endblock %}

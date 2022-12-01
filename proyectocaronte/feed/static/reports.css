@@ -1,0 +1,36 @@
+.reports-totals {
+    display: flex; 
+    justify-content: space-between;
+}
+
+.reports-title {
+    padding: 15px;
+}
+
+.reports-totals-each {
+    display: flex;  
+    margin: 5px;
+    padding: 7px;
+    font-size: 20px;
+}
+
+.reports-totals-each-result-number {
+    color: red;
+    font-weight: bolder;  
+}
+
+.reports-forms {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 20px;
+}
+
+.reports-forms-filter-name {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 5px;
+}
+
+.reports-forms-general-items {
+    padding-bottom: 5px;
+}

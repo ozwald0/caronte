@@ -1,0 +1,57 @@
+.service_detail-form-title {
+    display: flex;
+    justify-content: start;
+    align-items: baseline;
+    flex-wrap: wrap;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.service_detail-title {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.service_detail-form-title-key {
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 10px;
+    margin-bottom: 0px;
+}
+
+.service_detail-form-title-value {
+    font-size: 24x;
+    margin-top: 0px;
+}
+
+.service_detail-title2 {
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 20px;
+
+}
+
+.service_detail-total {
+    display: flex;
+    justify-content: flex-end;
+    
+}
+
+.client_view_detail-commmet-comment {
+    background-color: #F8FBFD;
+    border-radius: 10px;
+    padding: 3px;
+    margin: 8px;
+    font-size: 24px;
+    font-family: sans-serif;
+}
+
+.client_detail-date_service {
+    text-align: end;
+}
+
+.client_view_detail-title {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}

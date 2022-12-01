@@ -1,0 +1,43 @@
+{% extends 'feed/index.html' %}
+{% block content %}
+{% if user.is_authenticated %}
+<div class="container">
+    <h1>nuevo usuario</h1>
+    <br><br>
+    <form method="POST" action="{% url 'new_user' %}">
+    {% csrf_token %}
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="name">
+        </div>
+        <div class="mb-3">
+            <select class="form-select" aria-label="Default select example" value="{{ level.id }}" name="lev" id="level">
+                {% for level in levels %}
+                    <option name="option1" value="{{ level.id }}">{{ level.level_name }}</option>
+                    
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <select class="form-select" aria-label="Default select example" value="{{ stat.id }}" id="stat" name="st">
+                {% for stat in status %}
+                    <option name="option" value="{{ stat.id }}">{{ stat.status_of_users_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Correo </label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" name="passwd">555555a5555555
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Crear</button>
+      </form>
+</div>
+{% else %}
+    <h1>Inicia Sesion</h1>
+{% endif %}
+{% endblock %}

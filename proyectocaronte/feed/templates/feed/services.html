@@ -1,0 +1,46 @@
+{% extends 'feed/index.html' %}
+
+
+{% block content %}
+{% if user.is_authenticated %}
+<div class="container">
+    <div class="services-title">   
+        <h1>Servicios</h1>
+        <a class="btn btn-primary services-boton" href="new_service" role="button">Nuevo servicio</a>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">Usuario</th>
+                <th scope="col">Status de servicio</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Cliente</th>
+                <th scope="col">Creado</th>
+                <th scope="col"></th>
+                </tr>
+        </thead>
+        <tbody>
+            {% for service in all  %}
+            <tr>
+                <th scope="row">{{ forloop.counter }} </th>
+                <td>{{ service.user }} </td>
+                <td>{{ service.status }} </td>
+                <td>{{ service.failure|truncatechars:20 }} </td>
+                <td>{{ service.client }} </td>
+                <td>{{ service.created|date }} </td>
+                <td><a href="update_service/{{service.id}}">Editar</a>&nbsp; &nbsp; <a href="service_detail/{{service.id}}">Detalles</a></td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        <tr>
+
+        </tr>
+    </table>
+
+</div>
+{% else %}
+    <h1>Inicia sesion</h1>
+{% endif %}
+{% endblock %}
+    

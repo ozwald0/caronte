@@ -1,0 +1,35 @@
+{% extends 'feed/index.html' %}
+{% block content %}
+{% if user.is_authenticated %}
+<div class="container">
+    <div class="new_item-title">   
+        <h1>Nueva pieza</h1>
+        <a class="btn btn-primary new_item-boton" href="new_type_of_item" role="button">Nuevo tipo de pieza</a>
+    </div>
+    <br><br>
+    <form method="POST" action="{% url 'new_item' %}">
+    {% csrf_token %}
+        <div class="mb-3">
+            <select class="form-select" aria-label="Default select example" value="{{ types.id }}" name="type" id="type">
+                {% for types in all_types_of_items %}
+                    <option name="option" value="{{ types.id }}">{{ types.description }}</option>
+                    
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">modelo</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="model">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Marca</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="brand">
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Crear</button>
+      </form>
+</div>
+{% else %}
+    <h1>Inicia Sesion</h1>
+{% endif %}
+{% endblock %}

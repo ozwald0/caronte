@@ -1,0 +1,20 @@
+{% extends 'feed/index.html' %}
+{% block content %}
+{% if user.is_authenticated %}
+<div class="container">
+    <h1>Nuevo estado de servicio</h1>
+    <br><br>
+    <form method="POST" action="{% url 'new_service_status' %}">
+    {% csrf_token %}
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="name">
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Crear</button>
+      </form>
+</div>
+{% else %}
+    <h1>Inicia Sesion</h1>
+{% endif %}
+{% endblock %}

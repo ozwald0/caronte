@@ -1,0 +1,20 @@
+{% extends 'feed/index.html' %}
+{% block content %}
+{% if user.is_authenticated %}
+<div class="container">
+    <h1>Nuevo tipo de pieza</h1>
+    <br><br>
+    <form method="POST" action="{% url 'new_type_of_item' %}">
+    {% csrf_token %}
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Tipo de pieza</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="type_of_item">
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Crear</button>
+      </form>
+</div>
+{% else %}
+    <h1>Inicia Sesion</h1>
+{% endif %}
+{% endblock %}

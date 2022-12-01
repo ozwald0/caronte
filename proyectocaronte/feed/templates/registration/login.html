@@ -1,0 +1,36 @@
+{% extends 'feed/index.html' %}
+{% block content %}
+{% load static %}
+<!--   
+  <form method="POST" action="{% url 'login_user'  %}">
+  {% csrf_token %}
+    <h1 class="h3 mb-3 fw-normal">Inicia sesion</h1>
+    <div class="form-floating">
+      <input type="text" class="form-control" id="floatingInput" name ="username" placeholder="name@example.com">
+      <label for="floatingInput">Nombre</label>
+    </div>
+    <div class="form-floating">
+      <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
+      <label for="floatingPassword">Contraseña</label>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Ingresar</button>
+  </form>
+--> 
+
+  <div class="login">
+    <div class="form-container">
+      <img class="logo" src="{% static 'feed/images/facebook.svg' %}" alt="">
+      <form method="POST" action="{% url 'login_user'  %}" class="form">
+        {% csrf_token %}
+        <label for="email" class="label">Usuario</label>
+        <input type="text" id="email" placeholder="Ingresa tu usuario" name ="username" class="input input-email">
+
+        <label for="password" class="label">Contraseña</label>
+        <input type="password" id="password" placeholder="*********" name="password" class="input input-password">
+
+        <input type="submit" value="Inicia sesion" class="primary-button login-button">
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

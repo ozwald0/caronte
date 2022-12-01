@@ -1,0 +1,37 @@
+{% extends 'feed/index.html' %}
+{% block content %}
+{% if user.is_authenticated %}
+<div class="container">
+    <div class="items-title">   
+        <h1>Piezas</h1>
+        <a class="btn btn-primary items-boton" href="new_item" role="button">Nueva pieza</a>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id Pieza</th>
+                <th scope="col">Tipo de pieza</th>
+                <th scope="col">Modelo</th>
+                <th scope="col">Marca</th>
+                </tr>
+        </thead>
+        <tbody>
+            {% for item in all_items  %}
+            <tr>
+                <th scope="row">{{ item.id }} </th>
+                <td>{{ item.type_of_item.description }} </td>
+                <td>{{ item.model }} </td>
+                <td>{{ item.brand }} </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        <tr>
+
+        </tr>
+    </table>
+
+</div>
+{% else %}
+    <h1>Inicia Sesion</h1>
+{% endif %}
+{% endblock %}

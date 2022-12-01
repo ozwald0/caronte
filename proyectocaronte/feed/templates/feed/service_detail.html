@@ -1,0 +1,110 @@
+{% extends 'feed/index.html' %}
+{% block content %}
+{% if user.is_authenticated %}
+<div class="container">
+    <div class="service_detail-title-div">
+        <div><h1 class="service_detail-title">Detalles del servicio {{ service.id }}</h1></div>
+        <div class="service_detail-boton-pdf">
+            <div><a class="btn btn-primary service_detail-items-boton" href="/GeneratePDFService/{{ service.id }}" role="button">Imprimir servicio</a></div>
+            <div><a class="btn btn-primary service_detail-items-boton" href="/GeneratePDFComplete/{{ service.id }}" role="button">Imprimir entrega</a></div>
+        </div>
+    </div>
+    <form class="row g-3">
+        <div class="col-md-6">
+            <div class="service_detail-form-title">
+                <p class="service_detail-form-title-key">Tecnico:</p> <p class="service_detail-form-title-value">{{ service.user }}</p> 
+            </div>
+            <div class="service_detail-form-title">
+                <p class="service_detail-form-title-key">Tipo de servicio:</p> <p class="service_detail-form-title-value">{{ service.service_type }}</p> 
+            </div>
+            <div class="service_detail-form-title">
+                <p class="service_detail-form-title-key">Tipo de equipo:</p> <p class="service_detail-form-title-value">{{ service.type_of_product }}</p> 
+            </div>
+            <div class="service_detail-form-title">
+                <p class="service_detail-form-title-key">Cliente:</p> <p class="service_detail-form-title-value">{{ service.client }}</p> 
+            </div>
+            <div class="service_detail-form-title">
+                <p class="service_detail-form-title-key">Estado del servicio:</p> <p class="service_detail-form-title-value">{{ service.status }}</p> 
+            </div>
+            <div class="service_detail-form-title">
+                <p class="service_detail-form-title-key">Modelo:</p> <p class="service_detail-form-title-value">{{ service.model }}</p> 
+            </div>
+            <div class="service_detail-form-title">
+                <p class="service_detail-form-title-key">Falla:</p> <p class="service_detail-form-title-value">{{ service.failure }}</p> 
+            </div>
+            
+        </div>
+        <div class="col-md-6">
+            <div class="service_detail-form-title">
+                <p class="service_detail-form-title-key">Accesorios:</p> <p class="service_detail-form-title-value">{{ service.accesories }}</p> 
+            </div>
+            <div class="service_detail-form-title">
+                <p class="service_detail-form-title-key">Numero de serie:</p> <p class="service_detail-form-title-value">{{ service.serial_number }}</p> 
+            </div>
+            <div class="service_detail-form-title">
+                <p class="service_detail-form-title-key">El equipo enciende:</p> <p class="service_detail-form-title-value">{{ working_si_no }}</p> 
+            </div>
+            <div class="service_detail-form-title">
+                <p class="service_detail-form-title-key">El equipo esta dañado:</p> <p class="service_detail-form-title-value">{{ damaged_si_no }}</p> 
+            </div>
+            <div class="service_detail-form-title">
+                <p class="service_detail-form-title-key">El equipo esta completo:</p> <p class="service_detail-form-title-value">{{ complete_si_no }}</p> 
+            </div>
+            <div class="service_detail-form-title">
+                <p class="service_detail-form-title-key">Precio del servicio:</p> <p class="service_detail-form-title-value">{{ service.service_price }}</p> 
+            </div>
+            <div class="service_detail-form-title">
+                <p class="service_detail-form-title-key">Numero de consulta del cliente:</p> <p class="service_detail-form-title-value">{{ service.client_pass }}</p> 
+            </div>
+        </div>
+    </form>
+    <h1 class="service_detail-title2">Piezas y refaciones del servicio</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Numero de Servicio</th>
+                <th scope="col">Tipo de Item</th>
+                <th scope="col">Numero de serie</th>
+                <th scope="col">Numero de Referencia</th>
+                <th scope="col">Precio</th>
+                <th scope="col"></th>
+                </tr>
+        </thead>
+        <tbody>
+            {% for item in all_item_details  %}
+            <tr>
+                <th scope="row">{{ item.service.id }} </th>
+                <td>{{ item.item }} </td>
+                <td>{{ item.serial_number }} </td>
+                <td>{{ item.reference }} </td>
+                <td>{{ item.price }} </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        <tr>
+
+        </tr>
+    </table>
+    <h1 class="service_detail-title2">Comentarios</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Comentario</th>
+                </tr>
+        </thead>
+        <tbody>
+            {% for comment in all_service_comments  %}
+            <tr>
+                <th scope="row">{{ comment.comment }} </th>
+            </tr>
+            {% endfor %}
+            </tbody>
+    </table>
+    <div class="service_detail-total">
+        <h1>TOTAL: ${{ price }}</h1>
+    </div>
+</div>
+{% else %}
+    <h1>Inicia Sesion</h1>
+{% endif %}
+{% endblock %}

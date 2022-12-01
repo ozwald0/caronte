@@ -1,0 +1,130 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="{% static 'client_view_detail.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <div class="client_view_detail-title">
+            <h1>El estado de tu servicio en tiempo real</h1>
+        </div>
+    </header>
+    <div class="container">
+        <details>
+            <summary class="service_detail-title">Detalles del servicio {{ service.id }}</summary>
+                <form class="row g-3">
+                    <div class="col-md-6">
+                        <div class="service_detail-form-title">
+                            <p class="service_detail-form-title-key">Tecnico:</p> <p class="service_detail-form-title-value">{{ client_service.user }}</p> 
+                        </div>
+                        <div class="service_detail-form-title">
+                            <p class="service_detail-form-title-key">Tipo de servicio:</p> <p class="service_detail-form-title-value">{{ client_service.service_type }}</p> 
+                        </div>
+                        <div class="service_detail-form-title">
+                            <p class="service_detail-form-title-key">Tipo de equipo:</p> <p class="service_detail-form-title-value">{{ client_service.type_of_product }}</p> 
+                        </div>
+                        <div class="service_detail-form-title">
+                            <p class="service_detail-form-title-key">Cliente:</p> <p class="service_detail-form-title-value">{{ client_service.client }}</p> 
+                        </div>
+                        <div class="service_detail-form-title">
+                            <p class="service_detail-form-title-key">Estado del servicio:</p> <p class="service_detail-form-title-value">{{ client_service.status }}</p> 
+                        </div>
+                        <div class="service_detail-form-title">
+                            <p class="service_detail-form-title-key">Modelo:</p> <p class="service_detail-form-title-value">{{ client_service.model }}</p> 
+                        </div>
+                        <div class="service_detail-form-title">
+                            <p class="service_detail-form-title-key">Falla:</p> <p class="service_detail-form-title-value">{{ client_service.failure }}</p> 
+                        </div>
+                        
+                    </div>
+                    <div class="col-md-6">
+                        <div class="service_detail-form-title">
+                            <p class="service_detail-form-title-key">Accesorios:</p> <p class="service_detail-form-title-value">{{ client_service.accesories }}</p> 
+                        </div>
+                        <div class="service_detail-form-title">
+                            <p class="service_detail-form-title-key">Numero de serie:</p> <p class="service_detail-form-title-value">{{ client_service.serial_number }}</p> 
+                        </div>
+                        <div class="service_detail-form-title">
+                            <p class="service_detail-form-title-key">El equipo enciende:</p> <p class="service_detail-form-title-value">{{ working_si_no }}</p> 
+                        </div>
+                        <div class="service_detail-form-title">
+                            <p class="service_detail-form-title-key">El equipo esta dañado:</p> <p class="service_detail-form-title-value">{{ damaged_si_no }}</p> 
+                        </div>
+                        <div class="service_detail-form-title">
+                            <p class="service_detail-form-title-key">El equipo esta completo:</p> <p class="service_detail-form-title-value">{{ complete_si_no }}</p> 
+                        </div>
+                        <div class="service_detail-form-title">
+                            <p class="service_detail-form-title-key">Precio del servicio:</p> <p class="service_detail-form-title-value">{{ client_service.service_price }}</p> 
+                        </div>
+                        <div class="service_detail-form-title">
+                            <p class="service_detail-form-title-key">Numero de consulta del cliente:</p> <p class="service_detail-form-title-value">{{ client_service.client_pass }}</p> 
+                        </div>
+                    </div>
+                </form>
+        </details>
+        <h1 class="service_detail-title2">Actualizaciones del servicio</h1>
+        <div class="client_detail-date_service">
+            <h5>Fecha de ingreso del equipo {{client_service.created}}</h5>
+        </div>
+            <ul>
+                {% for comment in all_service_comments  %}
+                <li>
+                    <div class="client_view_detail-commmet-comment">
+                        <h6>Fecha de actualizacion {{ comment.created }}</h6>
+                        <p>{{ comment.comment}}</p>
+                        
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        <h1 class="service_detail-title2">Piezas y refaciones del servicio</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Pieza</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Precio</th>
+                    </tr>
+            </thead>
+            <tbody>
+                {% for item in all_item_details  %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }} </th>
+                    <td>{{ item.item.type_of_item }} </td>
+                    <td>{{ item.created }} </td>
+                    <td>${{ item.price }} </td>
+                   
+                </tr>
+                {% endfor %}
+                </tbody>
+            <tr>
+    
+            </tr>
+        </table>
+        <div class="service_detail-total">
+            <h1>TOTAL: ${{ price }}</h1>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>    
+</body>
+</html>
+<!--
+<h1>you mmade it {{ client_service.user }}</h1>
+<h1>you mmade it {{ client_service.created }}</h1>
+<h1>you mmade it {{ client_service.status }}</h1>
+<h1>you mmade it {{ datetime.datetime.now }}</h1>
+<h1>you mmade it {{ tiempo.month }}</h1>
+<h1>you mmade it {{ client_service.user_permissions }}</h1>
+<h1>you mmade it {{ client_id }}</h1>
+<h1>you mmade it {{ client_id }}</h1>
+<h1>you mmade it {{ client_id }}</h1>
+<h1>you mmade it {{ client_id }}</h1>
+-->

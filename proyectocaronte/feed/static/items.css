@@ -1,0 +1,12 @@
+.items-boton {
+    height: 40px;
+    font-size: 18px;
+}
+
+.items-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}

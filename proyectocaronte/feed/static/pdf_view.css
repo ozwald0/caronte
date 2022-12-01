@@ -1,0 +1,14 @@
+.pdf-title {
+    font-size: 300px;
+}
+.pdf-subtitle {
+    display: flex;
+    justify-content: space-between;
+}
+
+img {
+    width: 30p;
+}
+header {
+    border: solid 1px black;
+}

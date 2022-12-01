@@ -1,0 +1,176 @@
+{% extends 'feed/index.html' %}
+{% block content %}
+{% if user.is_authenticated %}
+<div class="container">
+    <h1 class="update_service-title">Servicio {{ service.id }}</h1>
+    <div class="row">
+        <div class="col">
+            <form class="row g-3" method="POST" action="{% url 'update_service' service.id  %}">
+            {% csrf_token %}
+                <div class="col-md-6 pb-0 mb-0">
+                    <div class="update_service-form-title">
+                        <p class="update_service-form-title-key">Tecnico:</p> <p class="update_service-form-title-value">{{ service.user }}</p> 
+                    </div>
+                    <div class="update_service-form-title">
+                        <p class="update_service-form-title-key">Tipo de servicio:</p> <p class="update_service-form-title-value">{{ service.service_type }}</p> 
+                    </div>
+                    <div class="update_service-form-title">
+                        <p class="update_service-form-title-key">Tipo de equipo:</p> <p class="update_service-form-title-value">{{ service.type_of_product }}</p> 
+                    </div>
+                    <div class="update_service-form-title">
+                        <p class="update_service-form-title-key">Cliente:</p> <p class="update_service-form-title-value">{{ service.client }}</p> 
+                    </div>
+                </div>
+                <div class="col-md-6 pb-0 mb-0">
+                    <div class="update_service-form-title">
+                        <p class="update_service-form-title-key">Accesorios:</p> <p class="update_service-form-title-value">{{ service.accesories }}</p> 
+                    </div>
+                    <div class="update_service-form-title">
+                        <p class="update_service-form-title-key">El equipo Enciende:</p> <p class="update_service-form-title-value">{{ working_si_no }}</p> 
+                    </div>
+                    <div class="update_service-form-title">
+                        <p class="update_service-form-title-key">El equipo esta dañado:</p> <p class="update_service-form-title-value">{{ damaged_si_no }}</p> 
+                    </div>
+                    <div class="update_service-form-title">
+                        <p class="update_service-form-title-key">El equipo esta completo:</p> <p class="update_service-form-title-value">{{ complete_si_no }}</p> 
+                    </div>
+                    <div>
+                        <p class="update_service-form-title-key">No de consulta de cliente:</p> <p class="update_service-form-title-value">{{ service.client_pass }}</p> 
+                        <input type="hidden" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="form_type" value="form_service">
+                    </div>
+                </div>
+                <div class="update_service-form-fields-to-update">
+                    <div class="update_service-form-price">
+                        <label for="inputEmail4" class="form-label update_service-form-title-key-select-field">Precio del servicio</label>
+                        <input type="text" class="form-control" id="inputEmail4" name="price" placeholder="{{service.service_price}}">
+                    </div>
+                    <div>
+                        <label for="inputEmail4" class="form-label update_service-form-title-key-select-field">Modelo del equipo</label>
+                        <input type="text" class="form-control" id="inputEmail4" name="model" placeholder="{{service.model}}">
+                    </div>
+                    <div>
+                        <label for="inputEmail4" class="form-label update_service-form-title-key-select-field">Numero de serie</label>
+                        <input type="text" class="form-control" id="inputEmail4" name="serial" placeholder="{{service.serial_number}}">
+                    </div>
+                </div>
+                <div>
+                    <details>
+                    <summary class="update_service-form-title-key-select-field">Descripcion de la falla:</summary> 
+                    <p>{{ service.failure }}</p> 
+                    </details>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label update_service-form-title-key-select-field">Estado del servicio</label>
+                    <select class="form-select" aria-label="Default select example" value="{{stat.id}}" id="stat" name="stat" >
+                        <option disabled selected name="option15" value="{{ current_status_id }}">{{ current_status }}</option>
+                        {% for stat in status %}
+                            <option name="option5" value="{{ stat.id }}">{{ stat.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">actualizar servicio</button>
+            </form>
+        </div>
+        <!--- Formulario de items del servicio -->
+        <div class="col update_service-form-fields-to-update">
+            <form method="POST" action="{% url 'update_service' service.id  %}">
+                <h2 class="update_service-form-add-title">Añadir pieza al servicio</h2>
+                
+            {% csrf_token %}
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label update_service-form-title-key-select-field">Tipo de pieza</label>
+                    <select class="form-select" aria-label="Default select example" value="{{ item.id }}" id="item" name="item">
+                    {% for item in items %}
+                        <option name="option5" value="{{ item.id }}">{{ item.type_of_item }}</option>
+                    {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label update_service-form-title-key-select-field">Numero de Serie </label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="serial_number" required>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label update_service-form-title-key-select-field">Numero de referencia</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="reference" required>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label update_service-form-title-key-select-field">Precio</label>
+                    <input type="number" class="form-control" id="exampleInputPassword1" name="price" min="1" required>
+                </div>
+                <input type="hidden" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="id" value="{{service.id}}">
+                <input type="hidden" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="form_type" value="form_item_update">
+                <button type="submit" class="btn btn-primary">Crear</button>
+            </form>
+            <a class="btn btn-primary update_service-items-boton" href="/GeneratePDF/{{ service.id }}" role="button">Generar solicitud de item</a>
+        </div>
+    </div>
+    <!-- Tabla con los items del servicio -->
+    <h1 class="update_service-title2">Piezas y refaciones del servicio</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Numero de Servicio</th>
+                <th scope="col">Tipo de Item</th>
+                <th scope="col">Numero de serie</th>
+                <th scope="col">Numero de Referencia</th>
+                <th scope="col">Precio</th>
+                <th scope="col"></th>
+                </tr>
+        </thead>
+        <tbody>
+            {% for item in all_item_details  %}
+            <tr>
+                <th scope="row">{{ forloop.counter }} </th>
+                <td>{{ item.item }} </td>
+                <td>{{ item.serial_number }} </td>
+                <td>{{ item.reference }} </td>
+                <td>${{ item.price }} </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        <tr>
+
+        </tr>
+    </table>
+    <!-- Comentarios del servicio  -->
+    <form method="POST" action="{% url 'update_service' service.id  %}">
+        <h2>Añadir comentario</h2>
+        {% csrf_token %}
+        <div class="col-md-6 pb-2">
+            <div>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="comment"></textarea>
+                <input type="hidden" class="form-control" id="inputEmail4" value="{{service.id}}" name="service_id_comment">
+                <input type="hidden" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="form_type" value="form_comment_update">
+            </div>  
+        </div>
+        <button type="submit" class="btn btn-primary">Crear comentario</button>
+        </form>
+    </form>
+    <!--Lista de todos los comentarios del servicio-->
+    <h1 class="update_service-title2">Comentarios</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">No.</th>
+                <th scope="col">Comentario</th>
+                
+
+                </tr>
+        </thead>
+        <tbody>
+            {% for comment in all_service_comments  %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <th scope="row">{{ comment.comment }} </th>
+            </tr>
+            {% endfor %}
+            </tbody>
+    </table>
+    <div class="update_service-total">
+        <h1>TOTAL: ${{ price }}</h1>
+    </div>
+</div>
+{% else %}
+    <h1>Inicia Sesion</h1>
+{% endif %}
+{% endblock %}

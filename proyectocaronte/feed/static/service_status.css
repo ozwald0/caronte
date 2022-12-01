@@ -1,0 +1,12 @@
+.service_status-boton {
+    height: 40px;
+    font-size: 18px;
+}
+
+.service_status-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
