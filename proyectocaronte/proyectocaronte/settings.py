@@ -24,7 +24,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-3)fv=pfd+!ycaf*syh00z)14k3skv%@&#_+m&xkz3=nfdei+y8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -75,10 +76,21 @@ WSGI_APPLICATION = 'proyectocaronte.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': BASE_DIR / 'db.sqlite3',
+#    }
+#}
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'jango.db.backends.mysql',
+        'NAME': 'ozwaldo$mundoglobaltidb',
+        'USER': 'ozwaldo',
+        'PASSWORD': 'Aqueronte4Estigia',
+        'HOST': 'ozwaldo.mysql.pythonanywhere-services.com',
+        'PORT': '3306',
     }
 }
 
