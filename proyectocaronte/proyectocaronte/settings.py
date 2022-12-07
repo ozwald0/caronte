@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'proyectocaronte.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'jango.db.backends.mysql',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ozwaldo$mundoglobaltidb',
         'USER': 'ozwaldo',
         'PASSWORD': 'Aqueronte4Estigia',
