@@ -31,10 +31,25 @@ class GeneratePDF(View):
         client = Client.objects.get(id = service.client.id)
         all_item_details = ItemDetail.objects.filter(service = service_id)
         all_service_comments = ServiceComment.objects.filter(service = service_id)
+        if service.is_working:
+            working_si_no = "Si"
+        else:
+            working_si_no = "No"
+        if service.is_damaged:
+            damaged_si_no = "Si"
+        else:
+            damaged_si_no = "No"
+        if service.is_complete:
+            complete_si_no = "Si"
+        else:
+            complete_si_no = "No"
         context = {
             "service": service,
             "all_item_details": all_item_details,
-            "client": client
+            "client": client,
+            "working_si_no": working_si_no,
+            "damaged_si_no": damaged_si_no,
+            "complete_si_no": complete_si_no,
         }
         html = template.render(context)
         pdf = render_to_pdf('feed/pdf_view.html', context)
@@ -53,11 +68,26 @@ class GeneratePDFService(View):
         all_item_details = ItemDetail.objects.filter(service = service_id)
         all_service_comments = ServiceComment.objects.filter(service = service_id)
         now = datetime.datetime.now()
+        if service.is_working:
+            working_si_no = "Si"
+        else:
+            working_si_no = "No"
+        if service.is_damaged:
+            damaged_si_no = "Si"
+        else:
+            damaged_si_no = "No"
+        if service.is_complete:
+            complete_si_no = "Si"
+        else:
+            complete_si_no = "No"
         context = {
             "service": service,
             "all_item_details": all_item_details,
             "client": client,
-            "now": now
+            "now": now,
+            "working_si_no": working_si_no,
+            "damaged_si_no": damaged_si_no,
+            "complete_si_no": complete_si_no,
         }
         html = template.render(context)
         pdf = render_to_pdf('feed/pdf_view_service.html', context)
@@ -76,6 +106,18 @@ class GeneratePDFComplete(View):
         client = Client.objects.get(id = service.client.id)
         all_item_details = ItemDetail.objects.filter(service = service_id)
         all_service_comments = ServiceComment.objects.filter(service = service_id)
+        if service.is_working:
+            working_si_no = "Si"
+        else:
+            working_si_no = "No"
+        if service.is_damaged:
+            damaged_si_no = "Si"
+        else:
+            damaged_si_no = "No"
+        if service.is_complete:
+            complete_si_no = "Si"
+        else:
+            complete_si_no = "No"
         for item in all_item_details:
             #service_full_price = service_full_price + item.price
             service_item_price = service_item_price + item.price
@@ -92,6 +134,9 @@ class GeneratePDFComplete(View):
             "service_item_price": service_item_price,
             "total_price": total_price,
             "item_number": item_number,
+            "working_si_no": working_si_no,
+            "damaged_si_no": damaged_si_no,
+            "complete_si_no": complete_si_no,
         }
         html = template.render(context)
         pdf = render_to_pdf('feed/pdf_view_complete.html', context)

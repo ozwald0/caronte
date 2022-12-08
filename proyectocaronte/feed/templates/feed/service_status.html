@@ -16,7 +16,7 @@
         <tbody>
             {% for stat in all_status  %}
             <tr>
-                <th scope="row">{{ forloop.counter }} </th>
+                <th scope="row">{{ stat.id }} </th>
                 <td>{{ stat.name }} </td>
             </tr>
             {% endfor %}
