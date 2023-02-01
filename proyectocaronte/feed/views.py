@@ -1232,3 +1232,7 @@ def register(request):
             messages.success(request, ("Usuario creado"))
             return redirect ('/home/')
     return render(request, 'feed/register.html', {})
+
+
+    def registe22r(request):
+        pass
