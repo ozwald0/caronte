@@ -37,11 +37,14 @@
                             <li><a href="/home/" class="nav-link px-2 text-white">Home</a></li>
                             <li><a href="/services/" class="nav-link px-2 text-white">Servicios</a></li>
                             <li><a href="/clients/" class="nav-link px-2 text-white">Clientes</a></li>
+                            {% if user.is_superuser or user.is_staff %}
                             <li><a href="/reports/" class="nav-link px-2 text-white">Reportes</a></li>
+                            {% endif %}
                             {% if user.is_superuser %}
                             <li><a href="/users/" class="nav-link px-2 text-white">Usuarios</a></li>
                             <li><a href="/service_status/" class="nav-link px-2 text-white">Status de Servicio</a></li>
                             <li><a href="/client_view/" class="nav-link px-2 text-white">Cliente consulta</a></li>
+                            <li><a href="/register/" class="nav-link px-2 text-white">Nuevo usuario</a></li>
                             {% endif %}
                             <li> <a href="/items/" class="nav-link px-2 text-white">items</a></li>
                         </ul>

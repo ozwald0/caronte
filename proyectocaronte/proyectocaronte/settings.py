@@ -24,8 +24,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-3)fv=pfd+!ycaf*syh00z)14k3skv%@&#_+m&xkz3=nfdei+y8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
-DEBUG = False
+DEBUG = True
+#DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -75,14 +75,15 @@ WSGI_APPLICATION = 'proyectocaronte.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': BASE_DIR / 'db.sqlite3',
-#    }
-#}
-
+#"""
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+#"""
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -93,7 +94,7 @@ DATABASES = {
         'PORT': '3306',
     }
 }
-
+"""
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -117,7 +118,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-mx'
 
 TIME_ZONE = 'America/Cancun'
 
@@ -140,3 +141,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 lOGIN_REDIRECT_URL = '/home/'
 LOGOUT_REDIRECT_URL = 'home'
+
+
+EMAIL_HOST = 'smtp.googlemail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'ozwaldoperaza@gmail.com'
+EMAIL_HOST_PASSWORD = 'modernwarfare2+'
+EMAIL_USE_TLS = True

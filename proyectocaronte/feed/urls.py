@@ -16,6 +16,7 @@ urlpatterns = [
     path("client_view/", views.client_view, name = "client_view"),
     path("home/", views.home, name = "home"),
     path("login_user/", views.login_user, name = "login_user"),
+    path("register/", views.register, name = "register"),
     #Enlaces de Services
     path("services/new_service", views.new_service, name = "new_service"),
     path("services/service_detail/<int:service_id>", views.service_detail, name = "service_detail"),

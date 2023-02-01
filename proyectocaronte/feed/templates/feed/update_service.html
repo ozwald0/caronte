@@ -41,34 +41,37 @@
                 </div>
                 <div class="update_service-form-fields-to-update">
                     <div class="update_service-form-price">
-                        <label for="inputEmail4" class="form-label update_service-form-title-key-select-field">Precio del servicio</label>
-                        <input type="text" class="form-control" id="inputEmail4" name="price" placeholder="{{service.service_price}}">
+                        <label for="inputEmail4" class="form-label update_service-form-title-key-select-field" >Precio del servicio</label>
+                        <input type="text" class="form-control" {% if not user.is_superuser and not user.is_staff %} disabled {%endif%} id="inputEmail4" name="price" placeholder="{{service.service_price}}">
                     </div>
                     <div>
                         <label for="inputEmail4" class="form-label update_service-form-title-key-select-field">Modelo del equipo</label>
-                        <input type="text" class="form-control" id="inputEmail4" name="model" placeholder="{{service.model}}">
+                        <input type="text" class="form-control" {% if not user.is_superuser and not user.is_staff %} disabled {%endif%} id="inputEmail4" name="model" placeholder="{{service.model}}">
                     </div>
                     <div>
                         <label for="inputEmail4" class="form-label update_service-form-title-key-select-field">Numero de serie</label>
-                        <input type="text" class="form-control" id="inputEmail4" name="serial" placeholder="{{service.serial_number}}">
+                        <input type="text" class="form-control" {% if not user.is_superuser and not user.is_staff %} disabled {%endif%} id="inputEmail4" name="serial" placeholder="{{service.serial_number}}">
                     </div>
                 </div>
                 <div>
                     <details>
                     <summary class="update_service-form-title-key-select-field">Descripcion de la falla:</summary> 
-                    <p>{{ service.failure }}</p> 
+                    <p>{{ service.failure }}</p><br> 
+                    <p> <strong> Observciones: </strong></p> <p>{{ service.service_reference}}</p>
                     </details>
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label update_service-form-title-key-select-field">Estado del servicio</label>
                     <select class="form-select" aria-label="Default select example" value="{{stat.id}}" id="stat" name="stat" >
-                        <option disabled selected name="option15" value="{{ current_status_id }}">{{ current_status }}</option>
+                        <option disabled selected name="option15" {% if not user.is_superuser or not user.is_staff %} disabled {%endif%} value="{{ current_status_id }}">{{ current_status }}</option>
                         {% for stat in status %}
-                            <option name="option5" value="{{ stat.id }}">{{ stat.name }}</option>
+                            <option name="option5" {% if not user.is_superuser and not user.is_staff %} disabled {%endif%} value="{{ stat.id }}">{{ stat.name }}</option>
                         {% endfor %}
                     </select>
                 </div>
+                {% if user.is_superuser or user.is_staff %} 
                 <button type="submit" class="btn btn-primary">actualizar servicio</button>
+                {%endif%}
             </form>
         </div>
         <!--- Formulario de items del servicio -->
@@ -99,9 +102,13 @@
                 </div>
                 <input type="hidden" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="id" value="{{service.id}}">
                 <input type="hidden" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="form_type" value="form_item_update">
+                {% if user.is_superuser or not user.is_staff %} 
                 <button type="submit" class="btn btn-primary">Crear</button>
+                {%endif%}
             </form>
+            <!--
             <a class="btn btn-primary update_service-items-boton" href="/GeneratePDF/{{ service.id }}" role="button">Generar solicitud de item</a>
+            -->
         </div>
     </div>
     <!-- Tabla con los items del servicio -->
@@ -133,6 +140,7 @@
         </tr>
     </table>
     <!-- Comentarios del servicio  -->
+    {% if user.is_superuser or user.is_staff %} 
     <form method="POST" action="{% url 'update_service' service.id  %}">
         <h2>Añadir comentario</h2>
         {% csrf_token %}
@@ -146,6 +154,7 @@
         <button type="submit" class="btn btn-primary">Crear comentario</button>
         </form>
     </form>
+    {% endif %}
     <!--Lista de todos los comentarios del servicio-->
     <h1 class="update_service-title2">Comentarios</h1>
     <table class="table">

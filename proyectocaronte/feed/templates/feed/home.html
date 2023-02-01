@@ -31,10 +31,12 @@
     <div class="titulo-servicios">
         {% if user.is_superuser %}
         <h1>Servicios de todos los usuarios</h1>
-        {% else %}
+        {% elif user.is_staff%}
         <h1>Servicios de {{user.username}}</h1>
-        {% endif %}
-        <a class="btn btn-primary boton-servicio" href="new_service" role="button">Nuevo servicio</a>
+        {% elif user.is_authenticated %}
+        <h1>Servicios de todos los usuarios</h1>
+        {% endif %} 
+        <a class="btn btn-primary boton-servicio" href="new_service" role="button">Nuevo servicio</a> 
     </div>
     <table class="table table-striped">
         <thead>
@@ -59,7 +61,11 @@
                 <td>{{ service.client }} </td>
                 <td>{{ service.created|date }} </td>
                 <td>{{ service.updated|date }} </td>
-                <td><a class="enlace" href="update_service/{{service.id}}">Editar</a>&nbsp; &nbsp; <a class="enlace" href="service_detail/{{service.id}}">Detalles</a></td>
+                {% if user.is_superuser or  user.is_staff %}
+                <td><a class="enlace" href="update_service/{{service.id}}">Editar</a>&nbsp; &nbsp;<a class="enlace" href="service_detail/{{service.id}}">Detalles</a></td>
+                {% else %}
+                <td><a class="enlace" href="update_service/{{service.id}}">Entrega item</a></td>
+                {% endif %}
             </tr>
             {% endfor %}
             </tbody>

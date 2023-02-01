@@ -16,6 +16,14 @@
                     </select>
                 </div>
                 <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label new_service-label-text">Cliente</label>
+                    <select class="form-select new_service-label-choice" aria-label="Default select example" value="{{ client.id }}" name="client" id="client">
+                        {% for client in clients %}
+                            <option name="option4" value="{{ client.id }}">{{ client.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label new_service-label-text">Tipo de servicio</label>
                     <select class="form-select new_service-label-choice" aria-label="Default select example" value="{{ service.id }}" name="service" id="service">
                         {% for service in services %}
@@ -32,15 +40,6 @@
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label new_service-label-text">Cliente</label>
-                    <select class="form-select new_service-label-choice" aria-label="Default select example" value="{{ client.id }}" name="client" id="client">
-                        {% for client in clients %}
-                            <option name="option4" value="{{ client.id }}">{{ client.name }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-           
-                <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label new_service-label-text">Modelo</label>
                     <input type="text" class="form-control new_service-label-choice" id="exampleInputEmail1" aria-describedby="emailHelp" name="model">
                 </div>
@@ -55,6 +54,10 @@
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label new_service-label-text">Falla</label>
                     <input type="text" class="form-control new_service-label-choice" id="exampleInputEmail1" aria-describedby="emailHelp" name="failure">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label new_service-label-text">Observaciones</label>
+                    <input type="text" class="form-control new_service-label-choice" id="exampleInputEmail1" aria-describedby="emailHelp" name="failure_detail">
                 </div>
                 <div class="form-check">
                     <input class="form-check-input new_service-label-choice" type="checkbox" value="working" name="working" id="flexCheckDefault" default="False">
@@ -73,10 +76,6 @@
                     <label class="form-check-label new_service-label-text" for="flexCheckDefault">
                         El equipo esta completo
                     </label>
-                </div>
-                <div class="mb-3 mt-3">
-                    <label for="exampleInputEmail1" class="form-label new_service-label-text">Precio</label>
-                    <input type="number" class="form-control new_service-label-choice" id="exampleInputEmail1" aria-describedby="emailHelp" name="price" min="1">
                 </div>
             
         </div>

@@ -1,0 +1,57 @@
+{% extends 'feed/index.html' %}
+{% block content %}
+{% load static %}
+<!--   
+  <form method="POST" action="{% url 'login_user'  %}">
+  {% csrf_token %}
+    <h1 class="h3 mb-3 fw-normal">Inicia sesion</h1>
+    <div class="form-floating">
+      <input type="text" class="form-control" id="floatingInput" name ="username" placeholder="name@example.com">
+      <label for="floatingInput">Nombre</label>
+    </div>
+    <div class="form-floating">
+      <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
+      <label for="floatingPassword">Contraseña</label>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Ingresar</button>
+  </form>
+--> 
+
+  <div class="login">
+    <div class="form-container">
+      <img class="logo" src="{% static 'feed/images/logotec.png' %}" alt="">
+      <form method="POST" action="{% url 'register'  %}" class="form">
+        {% csrf_token %}
+        <label for="email" class="label">Nombre de usuario</label>
+        <input type="text" id="email" placeholder="Elije tu avatar" name ="username" class="input input-email">
+
+        <label for="email" class="label">Nombre</label>
+        <input type="text" id="email" placeholder="ingresa tu nombre" name ="fname" class="input input-email">
+
+        <label for="email" class="label">Apellido</label>
+        <input type="text" id="email" placeholder="ingresa tu apellido" name ="lname" class="input input-email">
+
+        <label for="email" class="label">Correo</label>
+        <input type="email" id="email" placeholder="Ingresa tu correo" name ="email" class="input input-email">        
+
+        <label for="password" class="label">Contraseña</label>
+        <input type="password" id="password" placeholder="*********" name="password" class="input input-password">
+        
+        <label for="password" class="label">Confirma la contraseña</label>
+        <input type="password" id="password" placeholder="*********" name="password2" class="input input-password">
+
+        <label for="password" class="label">Roll</label>
+        <div class="reports-forms-general-items">
+            <select class="form-select" aria-label="Default select example" name ="roll">
+                <option value="{{ 2 }}" selected >Peasant</option>
+                <option value="{{ 1 }}">Blacksmith</option>
+                <option value="{{ 0 }}">Grand wizzard</option>
+            </select>
+        </div>
+        -->
+        <input type="submit" value="Inicia sesion" class="primary-button login-button">
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

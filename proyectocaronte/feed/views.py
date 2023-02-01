@@ -339,6 +339,7 @@ def new_service(request):
         client_reference = request.POST["client"]
         client_reference = int(client_reference)
         model = request.POST["model"]
+        failure_detail = request.POST["failure_detail"]
         serial_number = request.POST["serial"]
         accesories = request.POST["acce"]
         failure = request.POST["failure"]
@@ -360,7 +361,7 @@ def new_service(request):
         else:
             is_complete = False
         print(is_complete)
-        service_price = request.POST["price"]
+        service_price = 380
         #client_pass= request.POST["reference"]
         existe = False
         while existe == False:
@@ -369,7 +370,7 @@ def new_service(request):
                 existe = False
             else:
                 existe = True
-        new_service = Service(user = User(user_reference), service_type = TypeOfService(service_reference), type_of_product = TypeOfProduct(product_reference), client = Client(client_reference), status = Status(1), model = model, serial_number = serial_number, accesories = accesories, failure = failure, is_working = is_working, is_damaged = is_damaged, is_complete = is_complete, service_price = service_price, client_pass = client_pass)
+        new_service = Service(user = User(user_reference), service_type = TypeOfService(service_reference), type_of_product = TypeOfProduct(product_reference), client = Client(client_reference), status = Status(1), model = model, serial_number = serial_number, accesories = accesories, failure = failure, is_working = is_working, is_damaged = is_damaged, is_complete = is_complete, service_reference = failure_detail ,service_price = service_price, client_pass = client_pass)
         new_service.save()
         messages.success(request, ("Servicio creado"))
         return render(request, 'feed/new_service.html', {
@@ -458,7 +459,7 @@ def client_detail(request, client_id):
 
 
 def home(request):
-    if request.user.is_superuser:
+    if request.user.is_superuser and request.user.is_authenticated or request.user.is_authenticated and not request.user.is_staff :
         all_services = Service.objects.all().order_by('-created')
         counter = all_services.count()
         unfinished_services = Service.objects.filter(
@@ -1196,3 +1197,38 @@ def reports(request):
         "just_service_price_iva": just_service_price_iva,
         "comisions": comisions
         })
+
+
+def sendemail(request):
+    pass
+
+    
+def register(request):
+    if request.method == 'POST':
+        fname = request.POST['fname']
+        lname = request.POST['lname']
+        user_name = request.POST['username']
+        email = request.POST['email']
+        passwd = request.POST['password']
+        passwd2 = request.POST['password2']
+        roll = request.POST['roll']
+        roll = int(roll)
+        if roll == 0:
+            wizzard = True
+            blacksmith = True
+        if roll == 1:
+            wizzard = False
+            blacksmith = True
+        if roll == 2:
+            wizzard = False
+            blacksmith = False
+        if passwd == passwd2:
+            new_user = User.objects.create_user(user_name, email, passwd)
+            new_user.first_name = fname
+            new_user.first_name = lname
+            new_user.is_superuser = wizzard
+            new_user.is_staff = blacksmith
+            new_user.save()
+            messages.success(request, ("Usuario creado"))
+            return redirect ('/home/')
+    return render(request, 'feed/register.html', {})

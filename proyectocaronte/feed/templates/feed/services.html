@@ -29,7 +29,7 @@
                 <td>{{ service.failure|truncatechars:20 }} </td>
                 <td>{{ service.client }} </td>
                 <td>{{ service.created|date }} </td>
-                <td><a href="update_service/{{service.id}}">Editar</a>&nbsp; &nbsp; <a href="service_detail/{{service.id}}">Detalles</a></td>
+                <td>{% if user.is_superuser or user.is_staff %} <a href="update_service/{{service.id}}">Editar</a> {% endif %}&nbsp; &nbsp; <a href="service_detail/{{service.id}}">Detalles</a></td>
             </tr>
             {% endfor %}
             </tbody>
