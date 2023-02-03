@@ -7,8 +7,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        .table-text {
+            font-size: 12px;
+        }
+        .grade-title {
+            margin-top: 0px;
+            padding-top: 0px;
+            margin-bottom: 0px;
+            padding-bottom: 0px;
+        }
+        .grade-title-2 {
+            margin-top: 0px;
+            padding-top: 0px;
+            margin-bottom: 0px;
+            padding-bottom: 0px;
+        }
+        .grade-table {
+            margin-top: 0px;
+            padding-top: 0px;
+            margin-bottom: 0px;
+            padding-bottom: 0px;
+        }
         .title-name {
-            font-size: 18px;
+            font-size: 16px;
             text-align: center;
             margin-bottom: 0px;
             padding-bottom: 0px;
@@ -60,7 +81,7 @@
 
         }
         .pdf-title {
-            font-size: 24px;
+            font-size: 22px;
             text-align: center;
             margin-bottom: 20px;
         }
@@ -69,18 +90,12 @@
             padding-top: 5px;
         }
         .title {
-            font-size: 30px;
+            font-size: 28px;
             text-align: center;
             margin: 0px;
             padding: 15px 0px 0px 0px ;
         }
-        img {
-            width: 200px;
-        }
         header {    
-        }
-        .header-div {
-            text-align: right;
         }
         h1 {
             margin: 0px;
@@ -109,7 +124,10 @@
         }
         .table-client-content {
             border-bottom: outset .25px #F0F0F1;
-            margin-top: 10px;
+            margin-top: 1px;
+            margin-bottom: 0px;
+            padding-top-0px;
+            padding-bottom: 0px;
         }
         .pdf-client-item-table {
             text-align: center;
@@ -141,15 +159,11 @@
             margin-bottom: 0px;
         }
         .pdf_service-failure-description {
-            font-size: 15px;
+            font-size: 12px;
             margin-top:0px;
         }
         .pdf-service-h3 {
-            font-size: 15px;
-        }
-        .pdf_service_agreedment-div {
-            margin-top: 50px;
-
+            font-size: 12px;
         }
         .table-pieces{
             border-bottom: outset .25px #F0F0F1;
@@ -178,10 +192,10 @@
         .pdf-piece-total {
             text-align:right;
             margin-right: 60px;
-            font-size: 25px;
+            font-size: 16px;
         }
         .pdf-piece-total-first {
-            margin-top: 70px;
+            margin-top: 20px;
         }
         h3 {
             margin-top: 0px;
@@ -209,16 +223,16 @@
     <table class="table-client-content">
         <tr>
             <th class="pdf-client-content-left"><h1>Tecnico: {{ service.user }} </h1>   
-                <h1>No de servicio: {{ client.id }}</h1>
-                <h1>Cliente: {{ client.name }}</h1>
-                <h1>Empresa: {{ client.company }}</h1>
+                <h1 class="table-text">No de servicio: {{ client.id }}</h1>
+                <h1 class="table-text">Cliente: {{ client.name }}</h1>
+                <h1 class="table-text">Empresa: {{ client.company }}</h1>
                 
             </th>
             <th class="pdf-client-content-right">
-                <h1>Fecha de Servicio: {{ service.created }}</h1>
-                <h1>Correo {{ client.email }}</h1>
-                <h1>Telefono: {{ client.phonenumber }}</h1>
-                <h1>Codigo de Seguimiento: {{ service.client_pass }}</h1>
+                <h1 class="table-text">Fecha de Servicio: {{ service.created }}</h1>
+                <h1 class="table-text">Correo {{ client.email }}</h1>
+                <h1 class="table-text">Telefono: {{ client.phonenumber }}</h1>
+                <h1 class="table-text">Codigo de Seguimiento: {{ service.client_pass }}</h1>
             </th>
         </tr>
     </table>
@@ -227,17 +241,16 @@
     <table class="pdf_service-details">
         <tr>
             <th class="pdf-client-content-left"><h1>No de servicio {{ service.id }} </h1> 
-                <h1>Tipo de Servicio: {{ service.service_type }}</h1>
-                <h1>tipo de equipo: {{ service.type_of_product }}</h1>
-                <h1>Modelo: {{ service.model }}</h1>
-                
-                <h1>Accesorios: {{ service.accesories }}</h1>
+                <h1 class="table-text" >Tipo de Servicio: {{ service.service_type }}</h1>
+                <h1 class="table-text">tipo de equipo: {{ service.type_of_product }}</h1>
+                <h1 class="table-text">Modelo: {{ service.model }}</h1>
+                <h1 class="table-text">Accesorios: {{ service.accesories }}</h1>
             </th>
             <th class="pdf-client-content-left-right">
-                <h1>El equipo Enciende: {{ working_si_no }}</h1>
-                <h1>El equipo esta golpeado/roto: {{ damaged_si_no }}</h1>
-                <h1>El equipo esta completo: {{ complete_si_no }}</h1>
-                <h1>Numero de Serie: {{ service.serial_number }}</h1>
+                <h1 class="table-text">El equipo Enciende: {{ working_si_no }}</h1>
+                <h1 class="table-text">El equipo esta golpeado/roto: {{ damaged_si_no }}</h1>
+                <h1 class="table-text">El equipo esta completo: {{ complete_si_no }}</h1>
+                <h1 class="table-text">Numero de Serie: {{ service.serial_number }}</h1>
             </th>
         </tr>
     </table>
@@ -272,12 +285,11 @@
         {% endif %}
         <h1 class="pdf-piece-total">Precio total: ${{ total_price }} </h1>
     </div>
-    *Precios de referencia, las cantidades deglozadas se muestran en la factura. <br>
-    <br><br>
-    <h3> Agradecemos su preferencia y esperamos que el servicio haya sido de su completo agrado. porfavor tomese 1 min para evaluar nuestro servicio y 
+    *Precios de referencia, las cantidades deglozadas se muestran en la factura. <br> <br>
+    <h3 class="grade-title"> Agradecemos su preferencia y esperamos que el servicio haya sido de su completo agrado. porfavor tomese 1 min para evaluar nuestro servicio y 
     asi poder ofrecerle una mejor atencion cuando regrese, esperemos no sea pronto ;) </h3><br>
-    <table class="">
-        <h4>La atencion del tecnico fue:</h4>
+    <table class="grade-table">
+        <h4 class="grade-title-2">La atencion del tecnico fue:</h4>
         <thead>
             <tr>
                 <th scope="col"><p class="">Exelence</p></th>
@@ -287,9 +299,9 @@
             </tr>
         </thead>
         </tr>
-    </table>
-    <table class="">
-        <h4>El servicio en general fue:</h4>
+    </table >
+    <table class="grade-table">
+        <h4 class="grade-title-2">El servicio en general fue:</h4>
         <thead>
             <tr>
                 <th scope="col"><p class="">Exelence</p></th>

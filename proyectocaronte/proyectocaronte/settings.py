@@ -142,9 +142,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 lOGIN_REDIRECT_URL = '/home/'
 LOGOUT_REDIRECT_URL = 'home'
 
-
-EMAIL_HOST = 'smtp.googlemail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'ozwaldoperaza@gmail.com'
-EMAIL_HOST_PASSWORD = 'modernwarfare2+'
-EMAIL_USE_TLS = True
