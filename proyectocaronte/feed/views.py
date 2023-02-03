@@ -1225,7 +1225,7 @@ def register(request):
         if passwd == passwd2:
             new_user = User.objects.create_user(user_name, email, passwd)
             new_user.first_name = fname
-            new_user.first_name = lname
+            new_user.last_name = lname
             new_user.is_superuser = wizzard
             new_user.is_staff = blacksmith
             new_user.save()
